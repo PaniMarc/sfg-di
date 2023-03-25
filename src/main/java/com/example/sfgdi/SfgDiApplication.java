@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.example.sfgdi.controllers.ConstructorInjectedcontroller;
+import com.example.sfgdi.controllers.I18nController;
 import com.example.sfgdi.controllers.MyController;
 import com.example.sfgdi.controllers.PropertyInjectedController;
 import com.example.sfgdi.controllers.SetterInjectedController;
@@ -15,6 +16,10 @@ public class SfgDiApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
 		
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		
+		System.out.println("--- I18nBean");
+		System.out.println( i18nController.sayHello());
 		//when Spring creates a bean by default his name is the name of the class, with lowercase first letter
 		MyController myController= (MyController) ctx.getBean("myController");
 		
