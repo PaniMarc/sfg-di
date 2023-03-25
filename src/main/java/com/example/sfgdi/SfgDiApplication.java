@@ -18,27 +18,29 @@ public class SfgDiApplication {
 		//when Spring creates a bean by default his name is the name of the class, with lowercase first letter
 		MyController myController= (MyController) ctx.getBean("myController");
 		
-		String greeting= myController.sayHello();
+		System.out.println("--- Primary Bean");
+		System.out.println(myController.sayHello());
 		
-		System.out.println(greeting);
 		
-		System.out.println("---property");
+		System.out.println("--- Property");
 		
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
 		
 		System.out.println(propertyInjectedController.getGreeting());
 		
-		System.out.println("--- setter");
+		System.out.println("--- Setter");
 		
 		SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
 		
 		System.out.println(setterInjectedController.getGreeting());
 		
-		System.out.println("--- constructor");
+		System.out.println("--- Constructor");
 		
 		ConstructorInjectedcontroller constructorInjectedcontroller = (ConstructorInjectedcontroller) ctx.getBean("constructorInjectedcontroller");
 		
 		System.out.println(constructorInjectedcontroller.getGreeting());
+		
+		
 		
 	}
 
