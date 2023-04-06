@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import com.example.sfgdi.repository.EnglishGreetingRepository;
+import com.example.sfgdi.repository.EnglishGreetingRepositoryImpl;
 import com.example.sfgdi.services.ContructorGreetingService;
 import com.example.sfgdi.services.I18nEnglishGreetingService;
 import com.example.sfgdi.services.I18nItalianGreetingService;
@@ -45,11 +47,16 @@ public class GreetingServiceConfig {
 	}
 	
 	@Bean
+	EnglishGreetingRepository englishGreetingRepository() {
+		return new EnglishGreetingRepositoryImpl();
+	}
+	
+	@Bean
 	@Profile("EN")
 	//since the name of the bean is the name of the method, we tanslate @Service("I18nService") 
 	//simply changing the name of the metod
-	I18nEnglishGreetingService I18nService() {
-		return new I18nEnglishGreetingService();
+	I18nEnglishGreetingService I18nService(EnglishGreetingRepository englishGreetingRepository) {
+		return new I18nEnglishGreetingService(englishGreetingRepository);
 	}
 	
 	@Bean("I18nService")
