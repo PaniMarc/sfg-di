@@ -5,6 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import com.example.pets.CatPetService;
+import com.example.pets.DogPetService;
+import com.example.pets.PetService;
+import com.example.pets.PetServiceFactory;
 import com.example.sfgdi.repository.EnglishGreetingRepository;
 import com.example.sfgdi.repository.EnglishGreetingRepositoryImpl;
 import com.example.sfgdi.services.ContructorGreetingService;
@@ -69,5 +73,20 @@ public class GreetingServiceConfig {
 		return new I18nItalianGreetingService();
 	}
 	
-
+	@Bean
+	PetServiceFactory petServiceFactory() {
+		return new PetServiceFactory();
+	}
+	
+	@Bean
+	@Profile({"dog","default"})
+	PetService dogPetService(PetServiceFactory petServiceFactory) {
+		return petServiceFactory.getPetService("dog");
+	}
+	
+	@Bean
+	@Profile({"cat"})
+	PetService catPetService(PetServiceFactory petServiceFactory) {
+		return petServiceFactory.getPetService("cat");
+	}
 }

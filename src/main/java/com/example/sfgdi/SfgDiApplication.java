@@ -15,7 +15,9 @@ import com.example.sfgdi.controllers.SetterInjectedController;
 
 //override the default component scan. We ask to look for components in com.example.sfgi ( default ) and com.example.pets
 //without this, spring will look for component only in sfgdi
-@ComponentScan(basePackages = {"com.example.sfgdi","com.example.pets"})
+//@ComponentScan(basePackages = {"com.example.sfgdi","com.example.pets"})
+//NOTE: after some refactor we get rid of Stereotypes in com.example.pets so we can erase the @ComponentScan
+
 @SpringBootApplication
 public class SfgDiApplication {
 
