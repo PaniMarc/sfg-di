@@ -2,8 +2,13 @@ package com.example.sfgdi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 import com.example.sfgdi.services.ContructorGreetingService;
+import com.example.sfgdi.services.I18nEnglishGreetingService;
+import com.example.sfgdi.services.I18nItalianGreetingService;
+import com.example.sfgdi.services.PrimaryGreetingService;
 import com.example.sfgdi.services.PropertyGreetingService;
 import com.example.sfgdi.services.SetterGreetingService;
 
@@ -31,6 +36,30 @@ public class GreetingServiceConfig {
 	@Bean
 	SetterGreetingService setterGreetingService() {
 		return new SetterGreetingService();
+	}
+	
+	@Primary
+	@Bean
+	PrimaryGreetingService primaryGreetingService() {
+		return new PrimaryGreetingService();
+	}
+	
+	@Bean
+	@Profile("EN")
+	//since the name of the bean is the name of the method, we tanslate @Service("I18nService") 
+	//simply changing the name of the metod
+	I18nEnglishGreetingService I18nService() {
+		return new I18nEnglishGreetingService();
+	}
+	
+	@Bean("I18nService")
+	@Profile({"IT", "default"})
+	//if we go back to the I18nItalianGreetingService declaration we annotated ad @Service("I18nService")
+	//thanks to the profile this don't go in error. With the java configuration method we have a problem
+	//since two method cannot have the name ( and input ) so we are forced to change the name of the method here.
+	//But we can declare the name of the bean in @Bean annotation
+	I18nItalianGreetingService i18nItaliaService() {
+		return new I18nItalianGreetingService();
 	}
 	
 
