@@ -2,16 +2,15 @@ package com.example.sfgdi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
-import com.example.pets.CatPetService;
-import com.example.pets.DogPetService;
 import com.example.pets.PetService;
 import com.example.pets.PetServiceFactory;
 import com.example.sfgdi.repository.EnglishGreetingRepository;
 import com.example.sfgdi.repository.EnglishGreetingRepositoryImpl;
-import com.example.sfgdi.services.ContructorGreetingService;
+import com.example.sfgdi.services.ConstructorGreetingService;
 import com.example.sfgdi.services.I18nEnglishGreetingService;
 import com.example.sfgdi.services.I18nItalianGreetingService;
 import com.example.sfgdi.services.PrimaryGreetingService;
@@ -24,14 +23,17 @@ import com.example.sfgdi.services.SetterGreetingService;
 
 //in this example we have erased the @Service in ConstructorGreetingService, and created a bean, during the start up spring boot will bring this into the context.
 //same with propertyGreetingService
+
+//with importresource we import the bean that we have configured in xml
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 	
-	@Bean
 	//important: by default spring will create bean that has the name of of THE METHOD that we are using
 	// so if we here used contructorGreetingServiceBEAN , the bean would have been called in that way
-	ContructorGreetingService contructorGreetingService() {
-		return new ContructorGreetingService();
+	@Bean
+	ConstructorGreetingService contructorGreetingService() {
+		return new ConstructorGreetingService();
 	}
 	
 	@Bean

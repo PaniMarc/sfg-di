@@ -1,18 +1,16 @@
 package com.example.sfgdi.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.example.sfgdi.services.ContructorGreetingService;
+import com.example.sfgdi.services.ConstructorGreetingService;
 
 class ConstructorInjectedcontrollerTest {
 
 	ConstructorInjectedcontroller controller;
 	@BeforeEach
 	void setUp() throws Exception {
-		controller= new ConstructorInjectedcontroller(new ContructorGreetingService());
+		controller= new ConstructorInjectedcontroller(new ConstructorGreetingService());
 	}
 
 	@Test

@@ -4,7 +4,6 @@ package com.example.sfgdi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 import com.example.sfgdi.controllers.ConstructorInjectedcontroller;
 import com.example.sfgdi.controllers.I18nController;
