@@ -11,6 +11,8 @@ import com.example.sfgdi.controllers.MyController;
 import com.example.sfgdi.controllers.PetController;
 import com.example.sfgdi.controllers.PropertyInjectedController;
 import com.example.sfgdi.controllers.SetterInjectedController;
+import com.example.sfgdi.services.PrototypeBean;
+import com.example.sfgdi.services.SingletonBean;
 
 //override the default component scan. We ask to look for components in com.example.sfgi ( default ) and com.example.pets
 //without this, spring will look for component only in sfgdi
@@ -58,7 +60,17 @@ public class SfgDiApplication {
 		System.out.println(constructorInjectedcontroller.getGreeting());
 		
 		
+		System.out.println("--- BEAN SCOPES ----");
+		SingletonBean singletonBeanOne= ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBeanOne.getMyScope());
+		SingletonBean singletonBeanTwo= ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBeanTwo.getMyScope());
 		
+		
+		PrototypeBean prototypeBeanOne=ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBeanOne.getMyScope());
+		PrototypeBean prototypeBeanTwo=ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBeanTwo.getMyScope());
 	}
 
 }
