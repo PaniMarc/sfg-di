@@ -1,0 +1,4 @@
+guru:
+  jdbcurl: urldev
+  password: dbPasswordev
+  username: superuserdev

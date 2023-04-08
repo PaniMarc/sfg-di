@@ -1,0 +1,7 @@
+guru:
+  jdbcurl: yamlusername
+  password: dbPasswordyaml
+  username: superuseryaml
+spring:
+  profiles:
+    active: EN,cat,qa
