@@ -100,6 +100,7 @@ public class GreetingServiceConfig {
 		return petServiceFactory.getPetService("cat");
 	}
 	
+	/*
 	@Bean
 	FakeDataSource fakeDatasource(@Value("${guru.username}") String username ,
 								  @Value("${guru.password}") String password , 
@@ -109,5 +110,16 @@ public class GreetingServiceConfig {
 		fakeDataSource.setPassword(password);
 		fakeDataSource.setUsername(username);
 		return fakeDataSource;
+	}*/
+	
+	//less verbose than the precedent, using configuration class
+	@Bean
+	FakeDataSource fakeDatasource(SfgConfiguration sfgConfiguration) {
+		FakeDataSource fakeDataSource=new FakeDataSource();
+		fakeDataSource.setJdbcurl(sfgConfiguration.getJdbcurl());
+		fakeDataSource.setPassword(sfgConfiguration.getPassword());
+		fakeDataSource.setUsername(sfgConfiguration.getUsername());
+		return fakeDataSource;
 	}
+	
 }
