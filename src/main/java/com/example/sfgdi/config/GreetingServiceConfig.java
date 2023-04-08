@@ -31,7 +31,9 @@ import com.example.sfgdi.services.SetterGreetingService;
 @ImportResource("classpath:sfgdi-config.xml")
 
 //tell spring where the property are
-@PropertySource("classpath:datasource.properties")
+//with spring boot, the default is the application.properties, so if we have setted the variables there
+//there is no need for this line. // after a refactor we get rid of that file , and passed his information in application.properties
+//@PropertySource("classpath:datasource.properties")
 @Configuration
 public class GreetingServiceConfig {
 	
