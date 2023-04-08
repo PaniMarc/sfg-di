@@ -1,13 +1,16 @@
 package com.example.sfgdi.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 
 import com.example.pets.PetService;
 import com.example.pets.PetServiceFactory;
+import com.example.sfgdi.datasource.FakeDataSource;
 import com.example.sfgdi.repository.EnglishGreetingRepository;
 import com.example.sfgdi.repository.EnglishGreetingRepositoryImpl;
 import com.example.sfgdi.services.ConstructorGreetingService;
@@ -26,6 +29,9 @@ import com.example.sfgdi.services.SetterGreetingService;
 
 //with importresource we import the bean that we have configured in xml
 @ImportResource("classpath:sfgdi-config.xml")
+
+//tell spring where the property are
+@PropertySource("classpath:datasource.properties")
 @Configuration
 public class GreetingServiceConfig {
 	
@@ -90,5 +96,16 @@ public class GreetingServiceConfig {
 	@Profile({"cat"})
 	PetService catPetService(PetServiceFactory petServiceFactory) {
 		return petServiceFactory.getPetService("cat");
+	}
+	
+	@Bean
+	FakeDataSource fakeDatasource(@Value("${guru.username}") String username ,
+								  @Value("${guru.password}") String password , 
+								  @Value("${guru.jdbcurl}") String jdbcurl) {
+		FakeDataSource fakeDataSource=new FakeDataSource();
+		fakeDataSource.setJdbcurl(jdbcurl);
+		fakeDataSource.setPassword(password);
+		fakeDataSource.setUsername(username);
+		return fakeDataSource;
 	}
 }

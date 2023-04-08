@@ -11,6 +11,7 @@ import com.example.sfgdi.controllers.MyController;
 import com.example.sfgdi.controllers.PetController;
 import com.example.sfgdi.controllers.PropertyInjectedController;
 import com.example.sfgdi.controllers.SetterInjectedController;
+import com.example.sfgdi.datasource.FakeDataSource;
 import com.example.sfgdi.services.PrototypeBean;
 import com.example.sfgdi.services.SingletonBean;
 
@@ -71,6 +72,14 @@ public class SfgDiApplication {
 		System.out.println(prototypeBeanOne.getMyScope());
 		PrototypeBean prototypeBeanTwo=ctx.getBean(PrototypeBean.class);
 		System.out.println(prototypeBeanTwo.getMyScope());
+		
+		System.out.println("--- BEAN DATASOURCE ----");
+		FakeDataSource fakeDataSource= ctx.getBean(FakeDataSource.class);
+		
+		System.out.println(fakeDataSource.getUsername());
+		System.out.println(fakeDataSource.getPassword());
+		System.out.println(fakeDataSource.getJdbcurl());
+		
 	}
 
 }
