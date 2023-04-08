@@ -4,4 +4,17 @@ guru:
   username: superuseryaml
 spring:
   profiles:
-    active: EN,cat,qa
+    active: 
+      - EN
+      - cat
+      - qa
+   
+#with --- we stay that from now on we have another file of properties 
+---
+
+spring:
+  profiles: prod
+guru:
+  jdbcurl: produsername
+  password: dbPasswordPROD
+  username: superuserProd
